@@ -8,18 +8,35 @@
 
 import UIKit
 
-extension UISearchBar {
-    func findBarTextField() -> UITextField! {
-        let contentView = self.subviews[0]
-        for view in contentView.subviews {
-            if let textfield = view as? UITextField {
-                return textfield
-            }
+typealias GradientPoints = (startPoint: CGPoint, endPoint: CGPoint)
+
+enum GradientOrientation {
+    case topRightBottomLeft
+    case topLeftBottomRight
+    case horizontal
+    case vertical
+    
+    var startPoint: CGPoint {
+        return points.startPoint
+    }
+    
+    var endPoint: CGPoint {
+        return points.endPoint
+    }
+    
+    var points: GradientPoints {
+        switch self {
+        case .topRightBottomLeft:
+            return (CGPoint.init(x: 0.0, y: 1.0), CGPoint.init(x: 1.0, y: 0.0))
+        case .topLeftBottomRight:
+            return (CGPoint.init(x: 0.0, y: 0.0), CGPoint.init(x: 1, y: 1))
+        case .horizontal:
+            return (CGPoint.init(x: 0.0, y: 0.5), CGPoint.init(x: 1.0, y: 0.5))
+        case .vertical:
+            return (CGPoint.init(x: 0.0, y: 0.0), CGPoint.init(x: 0.0, y: 1.0))
         }
-        return nil
     }
 }
-
 
 extension UIView {
     func snapshotImage() -> UIImage?{
@@ -37,8 +54,37 @@ extension UIView {
             return nil
         }
     }
+    
+    //Gradients
+    func applyGradient(withColours colours: [UIColor], locations: [NSNumber]? = nil) {
+        let gradient: CAGradientLayer = CAGradientLayer()
+        gradient.frame = self.bounds
+        gradient.colors = colours.map { $0.cgColor }
+        gradient.locations = locations
+        self.layer.insertSublayer(gradient, at: 0)
+    }
+    
+    func applyGradient(withColours colours: [UIColor], gradientOrientation orientation: GradientOrientation) {
+        let gradient: CAGradientLayer = CAGradientLayer()
+        gradient.frame = self.bounds
+        gradient.colors = colours.map { $0.cgColor }
+        gradient.startPoint = orientation.startPoint
+        gradient.endPoint = orientation.endPoint
+        self.layer.insertSublayer(gradient, at: 0)
+    }
 }
 
+extension UISearchBar {
+    func findBarTextField() -> UITextField! {
+        let contentView = self.subviews[0]
+        for view in contentView.subviews {
+            if let textfield = view as? UITextField {
+                return textfield
+            }
+        }
+        return nil
+    }
+}
 
 extension UINavigationBar {
     func setGradientBackground(colors: [UIColor]) {
@@ -80,6 +126,18 @@ extension UIImage {
 
 
 extension UIColor {
+    //Only rgb color space
+    static func rgba2rgb(background: UIColor, color: UIColor) -> UIColor {
+        let bgCg = background.cgColor
+        let colorCg = color.cgColor
+        let alpha = colorCg.alpha
+        
+        return UIColor(red: (1 - alpha) * bgCg.components![0] + colorCg.components![0],
+                       green: (1 - alpha) * bgCg.components![1] + colorCg.components![1],
+                       blue: (1 - alpha) * bgCg.components![2] + colorCg.components![2],
+                       alpha: 1.0)
+    }
+    
     static func hexStringToUIColor (hex:String) -> UIColor {
         var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
         
@@ -125,3 +183,20 @@ extension UIWindow {
     }
 }
 
+extension UITextView {
+    public func removePadding() {
+        self.textContainerInset = UIEdgeInsets.zero
+        self.textContainer.lineFragmentPadding = 0.0
+    }
+}
+
+extension UIApplication {
+    // openUrl method compatible with older ios
+    public func open(url: URL) {
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url)
+        } else {
+            UIApplication.shared.openURL(url)
+        }
+    }
+}
