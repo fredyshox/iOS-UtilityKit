@@ -10,6 +10,9 @@
 		E22620331FD8B0EF00051FE1 /* UtilityKit.h in Headers */ = {isa = PBXBuildFile; fileRef = E22620311FD8B0EF00051FE1 /* UtilityKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E226203C1FD8B1CD00051FE1 /* UIKit+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E226203B1FD8B1CD00051FE1 /* UIKit+Extensions.swift */; };
 		E226203E1FD8B1E100051FE1 /* Foundation+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E226203D1FD8B1E100051FE1 /* Foundation+Extensions.swift */; };
+		E2FB1D2C203B873B002E3617 /* RoundLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FB1D2B203B873B002E3617 /* RoundLabel.swift */; };
+		E2FB1D2E203B8757002E3617 /* RoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FB1D2D203B8756002E3617 /* RoundView.swift */; };
+		E2FB1D30203B876B002E3617 /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FB1D2F203B876B002E3617 /* RoundedImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,6 +21,9 @@
 		E22620321FD8B0EF00051FE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E226203B1FD8B1CD00051FE1 /* UIKit+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIKit+Extensions.swift"; sourceTree = "<group>"; };
 		E226203D1FD8B1E100051FE1 /* Foundation+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Foundation+Extensions.swift"; sourceTree = "<group>"; };
+		E2FB1D2B203B873B002E3617 /* RoundLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundLabel.swift; sourceTree = "<group>"; };
+		E2FB1D2D203B8756002E3617 /* RoundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundView.swift; sourceTree = "<group>"; };
+		E2FB1D2F203B876B002E3617 /* RoundedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +60,9 @@
 				E22620321FD8B0EF00051FE1 /* Info.plist */,
 				E226203B1FD8B1CD00051FE1 /* UIKit+Extensions.swift */,
 				E226203D1FD8B1E100051FE1 /* Foundation+Extensions.swift */,
+				E2FB1D2B203B873B002E3617 /* RoundLabel.swift */,
+				E2FB1D2D203B8756002E3617 /* RoundView.swift */,
+				E2FB1D2F203B876B002E3617 /* RoundedImageView.swift */,
 			);
 			path = UtilityKit;
 			sourceTree = "<group>";
@@ -139,6 +148,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E226203E1FD8B1E100051FE1 /* Foundation+Extensions.swift in Sources */,
+				E2FB1D30203B876B002E3617 /* RoundedImageView.swift in Sources */,
+				E2FB1D2E203B8757002E3617 /* RoundView.swift in Sources */,
+				E2FB1D2C203B873B002E3617 /* RoundLabel.swift in Sources */,
 				E226203C1FD8B1CD00051FE1 /* UIKit+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
